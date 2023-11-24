@@ -5,6 +5,8 @@ import java.util.Scanner;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 class DictionaryManagement {
     private  String FILENAME;
@@ -69,5 +71,28 @@ class DictionaryManagement {
 
         objectOutputStream.close();
         fileOutputStream.close();
+    }
+
+    public static void searchVocabulary(String filePath) throws IOException {
+        BufferedReader reader = new BufferedReader(new FileReader(filePath));
+        String line;
+        StringBuilder text = new StringBuilder();
+
+        while ((line = reader.readLine()) != null) {
+            text.append(line).append("\n");
+        }
+        reader.close();
+
+        // Regex pattern để tìm các từ vựng có định dạng @a, @a b c
+        Pattern pattern = Pattern.compile("@(\\w+)(?:\\s+\\w+)*\\s+/(.+?)/", Pattern.UNICODE_CHARACTER_CLASS);
+        Matcher matcher = pattern.matcher(text);
+
+        while (matcher.find()) {
+            String word = matcher.group(1);
+            String definition = matcher.group(2);
+            System.out.println("Word: " + word);
+            System.out.println("Definition: " + definition);
+            System.out.println(); // In một dòng trống giữa từng cặp từ vựng và định nghĩa
+        }
     }
 }
