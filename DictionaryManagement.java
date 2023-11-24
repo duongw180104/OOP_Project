@@ -2,9 +2,20 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 
 class DictionaryManagement {
+    private  String FILENAME;
+    private Dictionary dictionary;
 
+    DictionaryManagement() {
+    }
+
+    public void addWord(String word_target, String word_explain) {
+        dictionary.addWord(new Word(word_target, word_explain));
+    }
     public static void insertFromCommandline(Dictionary dictionary) {
         Scanner scanner = new Scanner(System.in);
 
@@ -21,6 +32,31 @@ class DictionaryManagement {
         }
     }
 
+    public void insertFromFile() throws IOException {
+        File f = new File(FILENAME);
+        FILENAME = f.getAbsolutePath().substring(0, 1) + ":\\" + FILENAME;
+        BufferedReader br = null;
+        FileReader fr = null;
+        try {
+            fr = new FileReader(FILENAME);
+            br = new BufferedReader(fr);
+            String line;
+            br = new BufferedReader(new FileReader(FILENAME));
+            while ((line = br.readLine()) != null) {
+                String w[] = line.split("\t");
+                this.addWord(w[0], w[1]);
+            }
+        }catch(IOException e){
+            e.printStackTrace();
+        }finally {
+            try {
+                if(br != null) br.close();
+                if(fr != null) fr.close();
+            }catch(IOException ex){
+                ex.printStackTrace();
+            }
+        }
+    }
     public static void showAllWords(Dictionary dictionary) {
         dictionary.showAllWords();
     }
