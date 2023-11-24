@@ -73,7 +73,7 @@ class DictionaryManagement {
         fileOutputStream.close();
     }
 
-    public static void searchVocabulary(String filePath) throws IOException {
+   public void searchVocabulary(String filePath) throws IOException {
         BufferedReader reader = new BufferedReader(new FileReader(filePath));
         String line;
         StringBuilder text = new StringBuilder();
