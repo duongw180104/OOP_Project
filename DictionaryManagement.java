@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class DictionaryManagement extends Dictionary {
-    private  String FILENAME = "C:\\Users\\84976\\Desktop\\Tudien\\src\\data.txt";
+    private  String FILENAME = "C:\\Users\\84976\\Desktop\\HDH\\src\\data.txt";
 
     public boolean insertFromCommandLine() {
         System.out.print("Số từ bạn muốn thêm là: ");
