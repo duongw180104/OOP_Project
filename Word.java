@@ -1,19 +1,26 @@
-import java.io.Serializable;
+public class Word {
+    public  String word_target;
+    public  String word_explain;
 
-class Word implements Serializable {
-    private String word_target;
-    private String word_explain;
 
-    public Word(String word_target, String word_explain) {
-        this.word_target = this.word_target;
-        this.word_explain = this.word_explain;
-    }
-
-    public String getWordTarget() {
+    public String getWord_target() {
         return word_target;
     }
 
-    public String getWordExplain() {
+    public void setWord_target(String word_target) {
+        this.word_target = word_target;
+    }
+
+    public String getWord_explain() {
         return word_explain;
+    }
+
+    public void setWord_explain(String word_explain) {
+        this.word_explain = word_explain;
+    }
+
+    public void setWord(String word1, String word2) {
+        this.word_target = word1;
+        this.word_explain = word2;
     }
 }
